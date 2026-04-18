@@ -1,129 +1,658 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  /* Oracle color palette */
+  --color-void-900: #0A0806;
+  --color-surface: #15130f;
+  --color-surface-low: #1E1B17;
+  --color-surface-high: #2C2A25;
+  --color-outline-variant: #4D4639;
+
+  --color-sand-50: #FDF6E3;
+  --color-sand-200: #E8D5A3;
+  --color-sand-400: #C4A35A;
+  --color-sand-600: #8B6914;
+  --color-primary: #e5c276;
+  --color-on-primary: #3f2e00;
+
+  --color-spice-amber: #EF9F27;
+  --color-spice-coral: #D85A30;
+  --color-spice-teal: #1D9E75;
+
+  --color-atreides: #1E6FA8;
+  --color-harkonnen: #8B1A1A;
+  --color-fremen-gold: #C4A35A;
+
+  /* Fonts */
+  --font-cinzel: 'Cinzel', serif;
+  --font-crimson: 'Crimson Text', serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Letter spacing */
+  --tracking-widest-2: 0.3em;
+  --tracking-widest-3: 0.5em;
+
+  /* Keyframe animations */
+  --animate-fade-slide-up: fadeSlideUp 600ms ease-out forwards;
+  --animate-pulse-glow: pulseGlow 1.5s ease-in-out infinite;
+  --animate-bar-fill: barFill 800ms ease-out forwards;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-sand-drift: sandDrift 600ms ease-out forwards;
+  --animate-glow-pulse: glowPulse 4s ease-in-out infinite;
+  --animate-flicker: flicker 8s ease-in-out infinite;
+  --animate-scanline: scanline 6s linear infinite;
+
+  /* Background images */
+  --background-image-spice-gradient: linear-gradient(135deg, #8B6914 0%, #e5c276 100%);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+@keyframes fadeSlideUp {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@keyframes barFill {
+  0%   { width: 0%; }
+  100% { width: var(--bar-target); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0%   { transform: translateX(0) translateY(0); }
+  50%  { transform: translateX(6px) translateY(-4px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes whisperFade {
+  0%   { opacity: 0; transform: translateY(10px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  75%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes sandDrift {
+  0%   { opacity: 0; transform: translateX(-12px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0px 0px rgba(196, 163, 90, 0); }
+  50%       { box-shadow: 0 0 40px 4px rgba(196, 163, 90, 0.12); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92%       { opacity: 1; }
+  93%       { opacity: 0.4; }
+  94%       { opacity: 1; }
+  96%       { opacity: 0.6; }
+  97%       { opacity: 1; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.whisper-appear {
+  animation: whisperFade 5s ease-out forwards;
+}
+
+html, body {
+  background-color: #0A0806;
+  color: #E8D5A3;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+textarea, input {
+  outline: none;
+  appearance: none;
+}
+
+.oracle-scroll-indicator {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: var(--scroll-pct, 0%);
+  background-color: #1D9E75;
+  animation: pulseGlow 1.5s ease-in-out infinite;
+  z-index: 50;
+}
+
+.ghost-border {
+  border: 1px solid rgba(77, 70, 57, 0.15);
+}
+
+.glass {
+  background: rgba(21, 19, 15, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── NIGHT BACKGROUND LAYERS ── */
+
+/* Small stars — tight grid, faint */
+.stars-sm {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle, rgba(253,246,227,0.85) 1px, transparent 1px),
+    radial-gradient(circle, rgba(253,246,227,0.60) 1px, transparent 1px),
+    radial-gradient(circle, rgba(220,210,240,0.55) 1px, transparent 1px);
+  background-size: 200px 180px, 280px 250px, 160px 150px;
+  background-position: 20px 30px, 90px 60px, 140px 110px;
+  animation: drift 120s ease-in-out infinite;
+}
+
+/* Medium stars — sparser, brighter */
+.stars-md {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle, rgba(253,246,227,1.00) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(253,246,227,0.80) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(196,163,90,0.70)  1.5px, transparent 1.5px);
+  background-size: 380px 300px, 520px 420px, 440px 360px;
+  background-position: 60px 40px, 200px 150px, 310px 80px;
+  animation: drift 80s ease-in-out infinite reverse;
+}
+
+/* Large feature stars — very sparse, max brightness, twinkle */
+.stars-lg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle, rgba(253,246,227,1.00) 2px, rgba(253,246,227,0.15) 4px, transparent 6px),
+    radial-gradient(circle, rgba(253,246,227,1.00) 2px, rgba(253,246,227,0.10) 4px, transparent 6px),
+    radial-gradient(circle, rgba(196,163,90,0.90)  2px, rgba(196,163,90,0.10)  4px, transparent 6px),
+    radial-gradient(circle, rgba(253,246,227,1.00) 2px, rgba(253,246,227,0.12) 4px, transparent 6px);
+  background-size: 700px 550px, 900px 700px, 650px 500px, 850px 650px;
+  background-position: 120px 80px, 400px 200px, 250px 350px, 600px 100px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+/* Moon */
+.night-moon {
+  position: fixed;
+  top: 7%;
+  right: 16%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 38% 38%, #FDF6E3 0%, #E8D5A3 40%, #C4A35A 70%, transparent 85%);
+  box-shadow:
+    0 0 20px 6px rgba(253,246,227,0.25),
+    0 0 60px 20px rgba(196,163,90,0.12),
+    0 0 120px 50px rgba(139,105,20,0.06);
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* Nebula — soft colour wash behind everything */
+.night-nebula {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(50,20,100,0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 12%, rgba(20,10,70,0.25)  0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(30,80,60,0.10)  0%, transparent 60%);
+}
+
+/* ── DAY THEME — Arrakis at high noon ── */
+.theme-day {
+  background:
+    linear-gradient(180deg,
+      #1A0D00 0%,
+      #6B3300 8%,
+      #B56010 18%,
+      #D4880E 30%,
+      #C8964A 46%,
+      #B07C32 62%,
+      #8B5E18 76%,
+      #5C3C0A 88%,
+      #3A2408 100%
+    ) fixed;
+}
+
+.theme-day-haze {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 120% 35% at 50% 28%, rgba(232,168,48,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 20% at 50% 0%, rgba(255,200,80,0.10) 0%, transparent 60%);
+}
+
+/* ── NIGHT THEME — Arrakis under two moons ── */
+.theme-night {
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 12%, rgba(38,18,80,0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 78% 8%,  rgba(18,10,58,0.45) 0%, transparent 48%),
+    linear-gradient(180deg,
+      #01000A 0%,
+      #05041A 12%,
+      #080520 26%,
+      #0A0806 48%,
+      #0C0A07 70%,
+      #0A0806 100%
+    ) fixed;
+}
+
+.theme-night-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* four offset star layers at different sizes/densities */
+  background-image:
+    radial-gradient(circle, rgba(253,246,227,0.95) 1px,   transparent 1px),
+    radial-gradient(circle, rgba(253,246,227,0.70) 1px,   transparent 1px),
+    radial-gradient(circle, rgba(200,190,230,0.65) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(253,246,227,0.50) 0.5px, transparent 0.5px);
+  background-size:
+    420px 320px,
+    630px 480px,
+    260px 210px,
+    510px 370px;
+  background-position:
+    40px 60px,
+    170px 90px,
+    210px 130px,
+    90px 200px;
+  animation: drift 90s ease-in-out infinite;
+}
+
+/* moon glow */
+.theme-night-moon {
+  position: fixed;
+  top: 6%;
+  right: 18%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, #FDF6E3 0%, #C4A35A 55%, transparent 75%);
+  box-shadow: 0 0 40px 12px rgba(196,163,90,0.18), 0 0 80px 30px rgba(196,163,90,0.07);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* ── LANDING PAGE ── */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-sand-drift {
+  animation: sandDrift 600ms ease-out forwards;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 8s ease-in-out infinite;
+}
+
+.animate-scanline {
+  animation: scanline 6s linear infinite;
+}
+
+.spice-gradient-text {
+  background: linear-gradient(135deg, #8B6914 0%, #e5c276 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #C4A35A;
+}
+
+.cta-btn {
+  font-family: var(--font-cinzel);
+  font-size: 0.875rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #8B6914 0%, #e5c276 100%);
+  color: #3f2e00;
+  padding: 16px 40px;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: transform 200ms ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ── LANDING RESPONSIVE GRIDS ── */
+
+/* Custom cursor: hide native cursor on landing page */
+.landing-page {
+  cursor: none;
+}
+
+.landing-pillars-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.landing-house-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 480px;
+}
+
+.landing-testament-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.landing-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.landing-mockup {
+  padding: 48px;
+}
+
+.landing-section-pad {
+  padding: 120px 0;
+}
+
+.landing-pillars-section-pad {
+  padding: 120px 0;
+}
+
+/* House panel mobile: top edge instead of left edge */
+.house-edge-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+.house-edge-top {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .landing-pillars-grid {
+    grid-template-columns: 1fr;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  .landing-house-grid {
+    grid-template-columns: 1fr;
+    height: auto;
   }
-  html {
-    @apply font-sans;
+
+  .landing-house-grid > div {
+    height: 240px;
   }
+
+  .landing-testament-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .landing-mockup {
+    padding: 24px 20px;
+  }
+
+  .landing-section-pad {
+    padding: 72px 0;
+  }
+
+  .landing-pillars-section-pad {
+    padding: 64px 0;
+  }
+
+  .house-edge-left {
+    display: none;
+  }
+  .house-edge-top {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+
+  .landing-page .landing-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .landing-pillars-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .landing-house-grid {
+    height: 320px;
+  }
+
+  .landing-testament-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-section-pad {
+    padding: 80px 0;
+  }
+
+  .landing-mockup {
+    padding: 32px;
+  }
+}
+
+/* ── MICRO-ANIMATIONS & HOVER EFFECTS ── */
+
+/* Landing: pillar cards */
+.pillar-card {
+  transition: background-color 300ms ease;
+}
+.pillar-numeral {
+  transition: color 300ms ease;
+  display: block;
+}
+.pillar-accent {
+  transition: width 400ms ease;
+}
+
+/* Landing: house panels */
+.house-panel {
+  transition: filter 300ms ease;
+}
+
+/* Landing: testament cards */
+.testament-card {
+  transition: background-color 300ms ease;
+}
+.testament-qmark {
+  transition: opacity 300ms ease;
+}
+
+/* Landing: CTA button ring glow on hover */
+.cta-btn {
+  position: relative;
+}
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(196,163,90,0);
+  transition: border-color 300ms ease;
+  pointer-events: none;
+}
+
+/* Oracle: prophecy border glow */
+.prophecy-block {
+  transition: border-color 300ms ease;
+}
+
+/* Oracle: verdict action buttons */
+.verdict-copy-btn {
+  transition: transform 200ms ease, color 200ms ease, border-color 200ms ease !important;
+}
+.verdict-reset-btn {
+  position: relative;
+  transition: color 200ms ease !important;
+}
+.verdict-reset-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #C4A35A;
+  transition: width 250ms ease, left 250ms ease;
+}
+
+/* Oracle: history items */
+.history-item {
+  position: relative;
+  transition: background-color 300ms ease;
+}
+.history-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: rgba(196,163,90,0.18);
+  transition: width 300ms ease;
+}
+
+/* Oracle: submit button */
+.oracle-submit {
+  transition: transform 200ms ease, opacity 200ms ease !important;
+}
+
+/* Oracle: chip buttons */
+.chip-btn {
+  transition: transform 200ms ease, border-color 200ms ease, color 200ms ease !important;
+}
+
+/* Oracle: house selector with house-tinted hover */
+.house-btn {
+  transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, transform 200ms ease !important;
+}
+
+/* Gom Jabbar badge pulse when active */
+@keyframes gom-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+.gom-badge {
+  animation: gom-pulse 2s ease-in-out infinite;
+}
+
+/* ── HOVER-SAFE BLOCK (no hover on touch) ── */
+@media (hover: hover) {
+  /* Landing: pillar cards */
+  .pillar-card-1:hover { background-color: #252119 !important; }
+  .pillar-card-2:hover { background-color: #1a1811 !important; }
+  .pillar-card-3:hover { background-color: #0f0e0c !important; }
+
+  .pillar-card:hover .pillar-numeral { color: #EF9F27 !important; }
+  .pillar-card:hover .pillar-accent  { width: 72px !important; }
+
+  /* Landing: house panels */
+  .house-panel:hover { filter: brightness(1.12) saturate(1.08); }
+
+  /* Landing: testament cards */
+  .testament-card-dark:hover  { background-color: #0e0d0b !important; }
+  .testament-card-light:hover { background-color: #242118 !important; }
+  .testament-card:hover .testament-qmark { opacity: 0.7 !important; }
+
+  /* Landing: CTA button outer ring */
+  .cta-btn:hover::after { border-color: rgba(196,163,90,0.45); }
+
+  /* Oracle: house buttons tinted hover */
+  .house-btn-atreides:hover  { background-color: rgba(30,111,168,0.1) !important; transform: translateY(-1px); }
+  .house-btn-harkonnen:hover { background-color: rgba(139,26,26,0.1) !important; transform: translateY(-1px); }
+  .house-btn-fremen:hover    { background-color: rgba(196,163,90,0.1) !important; transform: translateY(-1px); }
+
+  /* Oracle: chip hover lift */
+  .chip-btn:hover { transform: translateY(-1px); }
+
+  /* Oracle: submit lift */
+  .oracle-submit:not(:disabled):hover { transform: translateY(-2px); opacity: 1 !important; }
+
+  /* Oracle: copy verdict lift */
+  .verdict-copy-btn:hover { transform: translateY(-1px); }
+
+  /* Oracle: reset underline slide-in */
+  .verdict-reset-btn:hover::after { width: 100%; left: 0; }
+
+  /* Oracle: prophecy hover glow */
+  .prophecy-block:hover { border-color: rgba(239,159,39,0.75) !important; }
+
+  /* Oracle: history item accent reveal */
+  .history-item:hover::before { width: 3px; }
+  .history-item:hover { background-color: #1a1811 !important; }
 }
